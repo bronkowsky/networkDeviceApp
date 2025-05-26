@@ -39,6 +39,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnAdd
@@ -137,11 +138,22 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Lokalizacja (miasto)";
             // 
+            // btnEdit
+            // 
+            this.btnEdit.Location = new System.Drawing.Point(898, 40);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(75, 23);
+            this.btnEdit.TabIndex = 11;
+            this.btnEdit.Text = "Edytuj";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.button1_Click);
+            // 
             // addDelDevice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1140, 450);
+            this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -174,5 +186,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnEdit;
     }
 }

@@ -61,6 +61,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="validTo.cs" />
     <EmbeddedResource Include="addDelDevice.resx">
       <DependentUpon>addDelDevice.cs</DependentUpon>
     </EmbeddedResource>

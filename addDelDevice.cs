@@ -38,7 +38,12 @@ namespace networkDeviceApp
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Device newDevice = new Device()
+            if(!ValidTo.IsValidIP(txtIP.Text))
+                {
+                MessageBox.Show("Niepoprawny adres IP!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+                }
+                Device newDevice = new Device()
             {
                 Type = cmbType.Text,
                 Name = txtName.Text,
@@ -47,7 +52,7 @@ namespace networkDeviceApp
             };
             listDevice.Items.Add(newDevice);
         }
-
+        
         private void btnDel_Click(object sender, EventArgs e)
         {
             if (listDevice.SelectedItem != null)
@@ -71,6 +76,11 @@ namespace networkDeviceApp
             {
                 MessageBox.Show("Wybierz element do usunięcia!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
