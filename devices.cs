@@ -9,6 +9,17 @@ namespace networkDeviceApp
     internal class devices
     {
     }
-   
+    public class Device
+    {
+        public string Type { get; set; }
+        public string Name { get; set; }
+        public string IP { get; set; }
+        public string Location { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Type}  |  {Name}  |  {IP}  |  {Location}";
+        }
+    }
 }
 
