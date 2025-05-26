@@ -38,7 +38,14 @@ namespace networkDeviceApp
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-
+            Device newDevice = new Device()
+            {
+                Type = cmbType.Text,
+                Name = txtName.Text,
+                IP = txtIP.Text,
+                Location = txtLocation.Text
+            };
+            listDevice.Items.Add(newDevice);
         }
     }
 }

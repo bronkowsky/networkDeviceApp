@@ -33,7 +33,7 @@
             this.txtIP = new System.Windows.Forms.TextBox();
             this.listDevice = new System.Windows.Forms.ListBox();
             this.cmbType = new System.Windows.Forms.ComboBox();
-            this.txtCity = new System.Windows.Forms.TextBox();
+            this.txtLocation = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnDel = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -82,12 +82,12 @@
             this.cmbType.Size = new System.Drawing.Size(121, 24);
             this.cmbType.TabIndex = 4;
             // 
-            // txtCity
+            // txtLocation
             // 
-            this.txtCity.Location = new System.Drawing.Point(526, 42);
-            this.txtCity.Name = "txtCity";
-            this.txtCity.Size = new System.Drawing.Size(137, 22);
-            this.txtCity.TabIndex = 5;
+            this.txtLocation.Location = new System.Drawing.Point(526, 42);
+            this.txtLocation.Name = "txtLocation";
+            this.txtLocation.Size = new System.Drawing.Size(137, 22);
+            this.txtLocation.TabIndex = 5;
             // 
             // label1
             // 
@@ -145,7 +145,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnDel);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtCity);
+            this.Controls.Add(this.txtLocation);
             this.Controls.Add(this.cmbType);
             this.Controls.Add(this.listDevice);
             this.Controls.Add(this.txtIP);
@@ -166,7 +166,7 @@
         private System.Windows.Forms.TextBox txtIP;
         private System.Windows.Forms.ListBox listDevice;
         private System.Windows.Forms.ComboBox cmbType;
-        private System.Windows.Forms.TextBox txtCity;
+        private System.Windows.Forms.TextBox txtLocation;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnDel;
         private System.Windows.Forms.Label label2;
