@@ -67,6 +67,7 @@
             // 
             // listDevice
             // 
+            this.listDevice.BackColor = System.Drawing.SystemColors.MenuBar;
             this.listDevice.FormattingEnabled = true;
             this.listDevice.ItemHeight = 16;
             this.listDevice.Location = new System.Drawing.Point(59, 99);
@@ -107,6 +108,7 @@
             this.btnDel.TabIndex = 7;
             this.btnDel.Text = "Usuń";
             this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // label2
             // 

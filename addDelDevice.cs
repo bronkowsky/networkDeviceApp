@@ -47,5 +47,30 @@ namespace networkDeviceApp
             };
             listDevice.Items.Add(newDevice);
         }
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            if (listDevice.SelectedItem != null)
+            {
+                string selectedDevice = listDevice.SelectedItem.ToString();
+
+                DialogResult result = MessageBox.Show
+                    (
+                    $"Jesteś pewien, że chcesz usunąć:\n{selectedDevice}?",
+                    "Potwierdzenie usunięcia",
+                     MessageBoxButtons.YesNo,
+                     MessageBoxIcon.Warning
+                    );
+
+                if (result == DialogResult.Yes)
+                {
+                    listDevice.Items.Remove(listDevice.SelectedItem);
+                } 
+            }
+            else
+            {
+                MessageBox.Show("Wybierz element do usunięcia!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }
