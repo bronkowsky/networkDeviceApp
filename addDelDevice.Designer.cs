@@ -35,7 +35,7 @@
             this.cmbType = new System.Windows.Forms.ComboBox();
             this.txtCity = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btbDel = new System.Windows.Forms.Button();
+            this.btnDel = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -49,6 +49,7 @@
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Dodaj";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // txtName
             // 
@@ -98,14 +99,14 @@
             this.label1.Text = "Rodzaj urządzenia";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // btbDel
+            // btnDel
             // 
-            this.btbDel.Location = new System.Drawing.Point(796, 40);
-            this.btbDel.Name = "btbDel";
-            this.btbDel.Size = new System.Drawing.Size(75, 23);
-            this.btbDel.TabIndex = 7;
-            this.btbDel.Text = "Usuń";
-            this.btbDel.UseVisualStyleBackColor = true;
+            this.btnDel.Location = new System.Drawing.Point(796, 40);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Size = new System.Drawing.Size(75, 23);
+            this.btnDel.TabIndex = 7;
+            this.btnDel.Text = "Usuń";
+            this.btnDel.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -142,7 +143,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btbDel);
+            this.Controls.Add(this.btnDel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtCity);
             this.Controls.Add(this.cmbType);
@@ -152,6 +153,7 @@
             this.Controls.Add(this.btnAdd);
             this.Name = "addDelDevice";
             this.Text = "addDelDevice";
+            this.Load += new System.EventHandler(this.modelDevices_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -166,7 +168,7 @@
         private System.Windows.Forms.ComboBox cmbType;
         private System.Windows.Forms.TextBox txtCity;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btbDel;
+        private System.Windows.Forms.Button btnDel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;

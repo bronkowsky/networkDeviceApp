@@ -52,6 +52,7 @@
     <Compile Include="addDelDevice.Designer.cs">
       <DependentUpon>addDelDevice.cs</DependentUpon>
     </Compile>
+    <Compile Include="devices.cs" />
     <Compile Include="login.cs">
       <SubType>Form</SubType>
     </Compile>

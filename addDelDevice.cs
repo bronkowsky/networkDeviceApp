@@ -17,7 +17,26 @@ namespace networkDeviceApp
             InitializeComponent();
         }
 
+        private void modelDevices_Load(object sender, EventArgs e)
+        {
+            cmbType.Items.Add("");
+            cmbType.Items.Add("Switch L2");
+            cmbType.Items.Add("Switch L3");
+            cmbType.Items.Add("Router");
+            cmbType.Items.Add("Firewall");
+            cmbType.Items.Add("Telefon IP");
+            cmbType.Items.Add("Drukarka");
+            cmbType.Items.Add("Fax");
+            cmbType.Items.Add("Kamera IP");
+
+            cmbType.SelectedIndex = 0;
+        }
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
         {
 
         }
