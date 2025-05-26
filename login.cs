@@ -16,5 +16,22 @@ namespace networkDeviceApp
         {
             InitializeComponent();
         }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            string login = txtLogin.Text;
+            string password = txtPassword.Text;
+
+            if(login == "" && password == "")
+            {
+                addDelDevice mainForm = new addDelDevice();
+                mainForm.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Niepoprawny login lub haslo!", "Błąd logowania", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
