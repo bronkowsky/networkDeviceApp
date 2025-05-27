@@ -7,29 +7,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Text.Json;
 
 namespace networkDeviceApp
 {
     public partial class addDelDevice : Form
     {
+        private List<Device> devices = new List<Device>();
         public addDelDevice()
         {
             InitializeComponent();
         }
 
-        private void modelDevices_Load(object sender, EventArgs e)
+        private void modelDevices_Load()
         {
-            cmbType.Items.Add("");
-            cmbType.Items.Add("Switch L2");
-            cmbType.Items.Add("Switch L3");
-            cmbType.Items.Add("Router");
-            cmbType.Items.Add("Firewall");
-            cmbType.Items.Add("Telefon IP");
-            cmbType.Items.Add("Drukarka");
-            cmbType.Items.Add("Fax");
-            cmbType.Items.Add("Kamera IP");
-
+            cmbType.Items.Clear();
+            cmbType.Items.AddRange(new string[]
+            {
+                   "", "Switch L2", "Switch L3", "Router",
+                   "Firewall","Telefon IP","Drukarka","Fax","Kamera IP"
+            });
             cmbType.SelectedIndex = 0;
+        }
+
+        private void Device_Load(object sender, EventArgs e)
+        {
+            modelDevices_Load();
+            devices = JsonManager.LoadFromJson();
+            listDevice.Items.Clear();
+            foreach (var device in devices)
+            {
+                listDevice.Items.Add(device);
+            }
         }
         private void label1_Click(object sender, EventArgs e)
         {
@@ -38,7 +48,7 @@ namespace networkDeviceApp
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if(!ValidTo.IsValidIP(txtIP.Text))
+            if (!ValidTo.IsValidIP(txtIP.Text))
                 {
                 MessageBox.Show("Niepoprawny adres IP!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -49,12 +59,24 @@ namespace networkDeviceApp
                 Name = txtName.Text,
                 IP = txtIP.Text,
                 Location = txtLocation.Text
-            };
+                };
+            devices.Add(newDevice);
+            JsonManager.SaveToJson(devices);
             listDevice.Items.Add(newDevice);
+            
+            
         }
+
+        private void SaveDevicesToFile()
+        {
+            string json =JsonSerializer.Serialize(devices);
+            File.WriteAllText("devices.json", json);
+        }
+
         
         private void btnDel_Click(object sender, EventArgs e)
         {
+            
             if (listDevice.SelectedItem != null)
             {
                 string selectedDevice = listDevice.SelectedItem.ToString();

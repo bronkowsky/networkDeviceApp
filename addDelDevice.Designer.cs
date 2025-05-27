@@ -167,7 +167,7 @@
             this.Controls.Add(this.btnAdd);
             this.Name = "addDelDevice";
             this.Text = "addDelDevice";
-            this.Load += new System.EventHandler(this.modelDevices_Load);
+            this.Load += new System.EventHandler(this.Device_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
