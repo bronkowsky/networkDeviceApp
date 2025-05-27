@@ -29,6 +29,8 @@ namespace networkDeviceApp
                    "Firewall","Telefon IP","Drukarka","Fax","Kamera IP"
             });
             cmbType.SelectedIndex = 0;
+
+            
         }
 
         private void Device_Load(object sender, EventArgs e)
@@ -118,9 +120,51 @@ namespace networkDeviceApp
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnEdit_Click(object sender, EventArgs e)
         {
+            if (listDevice.SelectedItem != null)
+            {
+                Device selectedDevice = (Device)listDevice.SelectedItem;
 
+                txtName.Text = selectedDevice.Name;
+                txtIP.Text = selectedDevice.IP;
+                txtLocation.Text = selectedDevice.Location;
+                cmbType.Text = selectedDevice.Type;
+            }
+            else
+            {
+                MessageBox.Show("Nie zostało wybrane żadne urządzenie do edytowania", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (listDevice.SelectedItem != null)
+            {
+                Device selectedDevice = (Device)listDevice.SelectedItem;
+
+                selectedDevice.Name = txtName.Text;
+                selectedDevice.IP =  txtIP.Text;
+                selectedDevice.Location = txtLocation.Text;
+                selectedDevice.Type = cmbType.Text;
+                //Zapisz zmiany w pliku
+                JsonManager.SaveToJson(devices);
+
+                //Odswiez liste
+                listDevice.Items.Clear();
+                foreach (Device device in devices)
+                {
+                    listDevice.Items.Add(device);
+                }
+
+                MessageBox.Show("Zmieniono parametry wybranego urządzenia", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Nie zostało wybrane żadne urządzenie do edytowania", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
-}
+    }
+
+

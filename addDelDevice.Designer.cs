@@ -40,10 +40,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnEdit = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnAdd
             // 
+            this.btnAdd.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.btnAdd.Location = new System.Drawing.Point(696, 40);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
@@ -103,7 +105,7 @@
             // 
             // btnDel
             // 
-            this.btnDel.Location = new System.Drawing.Point(796, 40);
+            this.btnDel.Location = new System.Drawing.Point(796, 320);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(75, 23);
             this.btnDel.TabIndex = 7;
@@ -140,19 +142,30 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(898, 40);
+            this.btnEdit.Location = new System.Drawing.Point(796, 99);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
             this.btnEdit.TabIndex = 11;
             this.btnEdit.Text = "Edytuj";
             this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.button1_Click);
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(890, 98);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(79, 23);
+            this.btnSave.TabIndex = 12;
+            this.btnSave.Text = "Zapisz";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // addDelDevice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1140, 450);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -187,5 +200,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnSave;
     }
 }
