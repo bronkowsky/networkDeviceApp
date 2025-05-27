@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnAdd = new System.Windows.Forms.Button();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtIP = new System.Windows.Forms.TextBox();
@@ -41,6 +42,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.lblType = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
+            this.lblIP = new System.Windows.Forms.Label();
+            this.lblLocation = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnAdd
@@ -160,11 +166,62 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // lblType
+            // 
+            this.lblType.AutoSize = true;
+            this.lblType.Location = new System.Drawing.Point(77, 80);
+            this.lblType.Name = "lblType";
+            this.lblType.Size = new System.Drawing.Size(75, 16);
+            this.lblType.TabIndex = 16;
+            this.lblType.Text = "Urządzenie";
+            this.lblType.Click += new System.EventHandler(this.lblType_Click);
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(177, 80);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(48, 16);
+            this.lblName.TabIndex = 17;
+            this.lblName.Text = "Nazwa";
+            this.lblName.Click += new System.EventHandler(this.lblName_Click);
+            // 
+            // lblIP
+            // 
+            this.lblIP.AutoSize = true;
+            this.lblIP.Location = new System.Drawing.Point(283, 80);
+            this.lblIP.Name = "lblIP";
+            this.lblIP.Size = new System.Drawing.Size(58, 16);
+            this.lblIP.TabIndex = 18;
+            this.lblIP.Text = "Adres IP";
+            this.lblIP.Click += new System.EventHandler(this.lblIP_Click);
+            // 
+            // lblLocation
+            // 
+            this.lblLocation.AutoSize = true;
+            this.lblLocation.BackColor = System.Drawing.SystemColors.Control;
+            this.lblLocation.Location = new System.Drawing.Point(383, 80);
+            this.lblLocation.Name = "lblLocation";
+            this.lblLocation.Size = new System.Drawing.Size(85, 16);
+            this.lblLocation.TabIndex = 19;
+            this.lblLocation.Text = "Miejscowość";
+            this.lblLocation.Click += new System.EventHandler(this.lblLocation_Click);
+            // 
             // addDelDevice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1140, 450);
+            this.Controls.Add(this.lblLocation);
+            this.Controls.Add(this.lblIP);
+            this.Controls.Add(this.lblName);
+            this.Controls.Add(this.lblType);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.label4);
@@ -178,6 +235,7 @@
             this.Controls.Add(this.txtIP);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.btnAdd);
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Name = "addDelDevice";
             this.Text = "addDelDevice";
             this.Load += new System.EventHandler(this.Device_Load);
@@ -201,5 +259,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.Label lblType;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label lblIP;
+        private System.Windows.Forms.Label lblLocation;
     }
 }
