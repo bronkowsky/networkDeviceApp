@@ -17,7 +17,6 @@ namespace networkDeviceApp
             string json = JsonSerializer.Serialize(devices, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(FileJson, json);
         }
-
         public static List<Device> LoadFromJson()
         {
             if (!File.Exists(FileJson)) return new List<Device>();
@@ -25,6 +24,7 @@ namespace networkDeviceApp
             string json = File.ReadAllText(FileJson);
             return JsonSerializer.Deserialize<List<Device>>(json) ?? new List<Device>();
         }
+        
 
     }
 }

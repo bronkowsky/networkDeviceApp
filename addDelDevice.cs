@@ -53,6 +53,15 @@ namespace networkDeviceApp
                 MessageBox.Show("Niepoprawny adres IP!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
                 }
+
+            foreach (Device device in listDevice.Items)
+            {
+                if(device.IP == txtIP.Text)
+                {
+                    MessageBox.Show("Urzadzenie z tym adresem już istnieje", "Duplikacja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
                 Device newDevice = new Device()
             {
                 Type = cmbType.Text,
@@ -79,8 +88,10 @@ namespace networkDeviceApp
             
             if (listDevice.SelectedItem != null)
             {
-                string selectedDevice = listDevice.SelectedItem.ToString();
-
+                Device selectedDevice = (Device)listDevice.SelectedItem; 
+                //wcześniej było: string selectedDevice = listDevice.SelectedItem.ToString(); i nie działało, bo 
+                //zwracało ciąg znaków a nie obiekt Device i selectedDevice.Name i IP probowały odwolywać się
+                //do wlasciwosci ktora nie istniala
                 DialogResult result = MessageBox.Show
                     (
                     $"Jesteś pewien, że chcesz usunąć:\n{selectedDevice}?",
@@ -89,9 +100,16 @@ namespace networkDeviceApp
                      MessageBoxIcon.Warning
                     );
 
+
+
                 if (result == DialogResult.Yes)
                 {
-                    listDevice.Items.Remove(listDevice.SelectedItem);
+                    listDevice.Items.Remove(selectedDevice); 
+
+                    devices = JsonManager.LoadFromJson();
+                    devices.RemoveAll(d => d.Name == selectedDevice.Name);
+                    JsonManager.SaveToJson(devices);
+                    
                 } 
             }
             else
