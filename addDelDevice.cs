@@ -16,13 +16,10 @@ namespace networkDeviceApp
     public partial class addDelDevice : Form
     {
         private List<Device> devices = new List<Device>();
-        private bool isWayType = true;
-        private bool isWayName = true;
-        private bool isWayIP = true;
-        private bool isWayLocation = true;
         public addDelDevice()
         {
             InitializeComponent();
+            txtSearch.TextChanged += txtSearch_TextChanged;
         }
 
         private void modelDevices_Load()
@@ -34,6 +31,28 @@ namespace networkDeviceApp
                    "Firewall","Telefon IP","Drukarka","Fax","Kamera IP"
             });
             cmbType.SelectedIndex = 0;
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            string search = txtSearch.Text.ToLower();
+            listViewDevice.Items.Clear();
+
+            foreach (var device in devices)
+            {
+                if (device.Type.ToLower().Contains(search) ||
+                    device.Name.ToLower().Contains(search) ||
+                    device.IP.ToLower().Contains(search) ||
+                    device.Location.ToLower().Contains(search))
+                {
+                    var item = new ListViewItem(device.Type);
+                    item.SubItems.Add(device.Name);
+                    item.SubItems.Add(device.IP);
+                    item.SubItems.Add(device.Location);
+                    item.Tag = device;
+                    listViewDevice.Items.Add(item);
+                }
+            }
         }
 
 
@@ -55,6 +74,7 @@ namespace networkDeviceApp
             modelDevices_Load();
             devices = JsonManager.LoadFromJson();
             listViewDevice_Load();
+            txtName.MaxLength = 15;
             foreach (var device in devices)
             {
                 var item = new ListViewItem(device.Type); 
@@ -64,6 +84,7 @@ namespace networkDeviceApp
                 item.Tag = device; 
                 listViewDevice.Items.Add(item); 
             }
+            
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -77,6 +98,7 @@ namespace networkDeviceApp
             if(IsDuplicateIP(txtIP.Text))
             {
                 MessageBox.Show("Urzadzenie z tym adresem już istnieje", "Duplikacja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
             Device newDevice = new Device()
             {
@@ -86,22 +108,22 @@ namespace networkDeviceApp
                 Location = txtLocation.Text
             };
             devices.Add(newDevice);
-            JsonManager.SaveToJson(devices);
-            ListViewItem items = new ListViewItem(newDevice.Name);
-            items.SubItems.Add(newDevice.Type);
+            
+            ListViewItem items = new ListViewItem(newDevice.Type);
+            items.SubItems.Add(newDevice.Name);
             items.SubItems.Add(newDevice.IP);
             items.SubItems.Add(newDevice.Location);
-            items.Tag = newDevice; 
+            items.Tag = newDevice;
             listViewDevice.Items.Add(items);
+            JsonManager.SaveToJson(devices);
+            RefreshDeviceList();
 
-
+            cmbType.SelectedIndex = 0;
+            txtName.Clear();
+            txtIP.Clear();
+            txtLocation.Clear();
         }
 
-        private void SaveDevicesToFile()
-        {
-            string json = JsonSerializer.Serialize(devices);
-            File.WriteAllText("devices.json", json);
-        }
         private bool IsDuplicateIP(string ip)
         {
             foreach (ListViewItem item in listViewDevice.Items)
@@ -129,12 +151,12 @@ namespace networkDeviceApp
                     );
 
 
-
                 if (result == DialogResult.Yes)
                 {
-                    devices.RemoveAll(d => d.Name == selectedDevice.Name);
+                    devices.Remove(selectedDevice);
                     JsonManager.SaveToJson(devices);
                     RefreshDeviceList();
+            
                 }
             }
             else
@@ -153,14 +175,12 @@ namespace networkDeviceApp
                  txtIP.Text = selectedDevice.IP;
                  txtLocation.Text = selectedDevice.Location;
                  cmbType.Text = selectedDevice.Type;
-                
             }
             else
             {
                 MessageBox.Show("Nie zostało wybrane żadne urządzenie do edytowania", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (listViewDevice.SelectedItems.Count > 0)
@@ -172,19 +192,21 @@ namespace networkDeviceApp
                 selectedDevice.IP = txtIP.Text;
                 selectedDevice.Location = txtLocation.Text;
                 selectedDevice.Type = cmbType.Text;
-                JsonManager.SaveToJson(devices);
+                
 
                 selectedItem.SubItems[0].Text = selectedDevice.Type;
                 selectedItem.SubItems[1].Text = selectedDevice.Name;
                 selectedItem.SubItems[2].Text = selectedDevice.IP;
                 selectedItem.SubItems[3].Text = selectedDevice.Location;
-
+                JsonManager.SaveToJson(devices);
                 MessageBox.Show("Zmieniono parametry wybranego urządzenia", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                JsonManager.LoadFromJson();
             }
             else
             {
                 MessageBox.Show("Nie zostało wybrane żadne urządzenie do edytowania", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+
         }
         private void RefreshDeviceList()
         {
@@ -198,56 +220,6 @@ namespace networkDeviceApp
                 item.Tag = device;
                 listViewDevice.Items.Add(item);
             }
-            
-            //listDevice.Items.Clear();
-            //foreach (var device in devices)
-            //{
-            //    listDevice.Items.Add(device);
-            //}
-        }
-
-        private void lblType_Click(object sender, EventArgs e)
-        {   
-            if(isWayType)
-            devices = devices.OrderBy(d => d.Type).ToList();
-            else
-            devices = devices.OrderByDescending(d=>d.Type).ToList();
-
-            isWayType = !isWayType;
-            RefreshDeviceList();
-        }
-
-        private void lblName_Click(object sender, EventArgs e)
-        {
-            if(isWayName)
-            devices = devices.OrderBy(d => d.Name).ToList();
-            else
-            devices = devices.OrderByDescending(d => d.Name).ToList();
-
-            isWayName = !isWayName;
-            RefreshDeviceList();
-        }
-
-        private void lblIP_Click(object sender, EventArgs e)
-        {
-            if(isWayIP)
-            devices = devices.OrderBy(d => d.IP).ToList();
-            else
-            devices = devices.OrderByDescending(d => d.IP).ToList();
-
-            isWayIP = !isWayIP;
-            RefreshDeviceList();
-        }
-
-        private void lblLocation_Click(object sender, EventArgs e)
-        {
-            if(isWayLocation)
-            devices = devices.OrderBy(d => d.Location).ToList();
-            else
-            devices = devices.OrderByDescending(d => d.Location).ToList();
-
-            isWayLocation = !isWayLocation;
-            RefreshDeviceList();
         }
     }
 }
