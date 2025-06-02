@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace networkDeviceApp
 {
-    internal class devices
-    {
-    }
-    public class Device
+
     {
         public string Type { get; set; }
         public string Name { get; set; }
