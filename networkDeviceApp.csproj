@@ -77,27 +77,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="addDelDevice.cs">
+    <Compile Include="Forms\addDelDevice.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addDelDevice.Designer.cs">
+    <Compile Include="Forms\addDelDevice.Designer.cs">
       <DependentUpon>addDelDevice.cs</DependentUpon>
     </Compile>
-    <Compile Include="devices.cs" />
-    <Compile Include="JsonManager.cs" />
-    <Compile Include="login.cs">
+    <Compile Include="Klasy\AddDevice.cs" />
+    <Compile Include="Klasy\DelDevice_helper.cs" />
+    <Compile Include="Klasy\devices.cs" />
+    <Compile Include="Interfejsy\INetworkDevice.cs" />
+    <Compile Include="Klasy\EditDevice_helper.cs" />
+    <Compile Include="Klasy\ListView_helper.cs" />
+    <Compile Include="Klasy\SaveDevice_helper.cs" />
+    <Compile Include="Klasy\SortDevice_helper.cs" />
+    <Compile Include="Klasy\txtSearch_helper.cs" />
+    <Compile Include="Walidacja\JsonManager.cs" />
+    <Compile Include="Forms\login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="Forms\Form1.Designer.cs">
       <DependentUpon>login.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="validTo.cs" />
-    <EmbeddedResource Include="addDelDevice.resx">
+    <Compile Include="Walidacja\validTo.cs" />
+    <EmbeddedResource Include="Forms\addDelDevice.resx">
       <DependentUpon>addDelDevice.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="login.resx">
+    <EmbeddedResource Include="Forms\login.resx">
       <DependentUpon>login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -120,8 +128,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
